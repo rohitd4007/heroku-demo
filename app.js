@@ -30,7 +30,7 @@ app.use("/", async(req, res) => {
             data: { user },
         });
     } catch (err) {
-        req.status(404).json({
+        res.status(404).json({
             status: 'not found',
             message: err,
         });
