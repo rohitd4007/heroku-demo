@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose")
+const User = require("./Model/UserModel")
 
 
 // const port = process.env.PORT || 8000;
@@ -20,6 +21,23 @@ mongoose.connect("mongodb://localhost:27017/user", {
 });
 
 
-app.use("/", (req, res) => {
-    res.status(201).json({ status: "sucess", data: "Hello" })
+app.use("/", async(req, res) => {
+    //res.status(201).json({ status: "sucess", data: "Hello" })
+    try {
+        const user = await User.find();
+        res.status(201).json({
+            status: 'sucess',
+            data: { user },
+        });
+    } catch (err) {
+        req.status(404).json({
+            status: 'not found',
+            message: err,
+        });
+    }
 })
+
+
+// exports.getAllUser = async(req, res) => {
+
+// }
