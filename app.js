@@ -2,9 +2,9 @@ const express = require("express");
 const app = express();
 
 
-const port = process.env.port || 8080;
-app.listen(port, () => {
-    console.log("started at port 8080 ")
+// const port = process.env.PORT || 8000;
+app.listen(process.env.PORT || 5000, () => {
+    console.log("started at port 5000 ")
 });
 
 app.use("/", (req, res) => {
